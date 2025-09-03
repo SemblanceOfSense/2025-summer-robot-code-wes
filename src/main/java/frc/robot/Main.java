@@ -24,6 +24,7 @@ public final class Main
    */
   public static void main(String... args)
   {
-    RobotBase.startRobot(Robot::new);
+      System.setProperty("log4j.configurationFile", "log4j2.xml");
+      RobotBase.startRobot(Robot::new);
   }
 }
