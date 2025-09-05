@@ -25,21 +25,12 @@ public class IntakeSubsystem extends SubsystemBase {
         config.get("ArmI", IntakeConstants.armI),
         config.get("ArmD", IntakeConstants.armD)
     );
-    private final PIDController clawPidController = new PIDController(
-        config.get("ClawP", IntakeConstants.clawP),
-        config.get("ClawI", IntakeConstants.clawI),
-        config.get("ClawD", IntakeConstants.clawD)
-    );
 
     @Override
     public void periodic() {
         // Update Arm PID, position based
         armPidController.setSetpoint(table.getEntry("ArmSetpoint", 0));
-        armMotor.setVoltage(config.get("ArmMaxVolt", IntakeConstants.armMaxVolt) * armPidController.calculate(MathUtils.RPMtoRadians(armEncoder.getPosition())));
-
-        // Update Claw PID, angular velocity based
-        clawPidController.setSetpoint(table.getEntry("ClawSetpoint", 0));
-        clawMotor.set(config.get("ClawMaxAngVel", IntakeConstants.clawMaxAngVel) * clawPidController.calculate(MathUtils.RPMtoRadians(clawEncoder.getVelocity())));
+        armMotor.set(config.get("ArmMaxVolt", IntakeConstants.armMaxVolt) * armPidController.calculate(MathUtils.RPMtoRadians(armEncoder.getPosition())));
     }
 
     public IntakeSubsystem() {}
@@ -49,7 +40,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void setClawVel(double vel) {
-        table.setEntry("ClawSetpoint", vel);
+        clawMotor.set(vel);
     }
 
     public void toggleArm() {
@@ -62,9 +53,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void toggleClaw() {
         if (table.getEntry("ClawSetPoint", 0) == 0) {
-            table.setEntry("ClawSetPoint", config.get("ClawTargPos", IntakeConstants.clawTargVel));
+            clawMotor.set(config.get("ClawTargVel", IntakeConstants.clawTargVel));
         } else {
-            table.setEntry("ClawSetPoint", config.get("ClawTargPos", 0));
+            clawMotor.set(config.get("ClawTargVel", 0));
         }
     }
 }
