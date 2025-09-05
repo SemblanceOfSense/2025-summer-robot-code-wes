@@ -30,13 +30,13 @@ public class IntakeSubsystem extends SubsystemBase {
     public void periodic() {
         // Update Arm PID, position based
         armPidController.setSetpoint(table.getEntry("ArmSetpoint", 0));
-        armMotor.set(config.get("ArmMaxVolt", IntakeConstants.armMaxVolt) * armPidController.calculate(MathUtils.RPMtoRadians(armEncoder.getPosition())));
     }
 
     public IntakeSubsystem() {}
 
     public void setArmPos(double pos) {
         table.setEntry("ArmSetpoint", pos);
+        armMotor.set(config.get("ArmMaxVolt", IntakeConstants.armMaxVolt) * armPidController.calculate(MathUtils.RPMtoRadians(armEncoder.getPosition())));
     }
 
     public void setClawVel(double vel) {
