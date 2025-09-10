@@ -8,7 +8,7 @@ public class ClawTestCommand extends Command {
     private final IntakeSubsystem intakeSubsystem;
 
     public ClawTestCommand(IntakeSubsystem intakeSubsystem) {
-        this.intakeSubsystem = intakeSubsystem;
+        this.intakeSubsystem = intakeSubsystem; addRequirements(intakeSubsystem);
     }
 
     @Override
