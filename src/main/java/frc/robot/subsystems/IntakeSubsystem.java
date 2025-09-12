@@ -36,11 +36,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void setArmPos(double pos) {
         table.setEntry("ArmSetpoint", pos);
-        armMotor.set(config.get("ArmMaxVolt", IntakeConstants.armMaxVolt) * armPidController.calculate(MathUtils.RPMtoRadians(armEncoder.getPosition())));
+        armMotor.setVoltage(config.get("ArmMaxVolt", IntakeConstants.armMaxVolt) * armPidController.calculate(MathUtils.RPMtoRadians(armEncoder.getPosition())));
     }
 
     public void setClawVel(double vel) {
-        clawMotor.set(vel);
+        clawMotor.setVoltage(vel);
     }
 
     public void toggleArm() {
