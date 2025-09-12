@@ -40,7 +40,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void setClawVel(double vel) {
-        clawMotor.setVoltage(vel);
+        clawMotor.set(vel);
     }
 
     public void toggleArm() {
