@@ -11,6 +11,7 @@ public class ExampleShooterCommand extends Command {
     public ExampleShooterCommand(ShooterSubsystem shooterSubsystem, double shooterRPM) {
         this.shooterSubsystem = shooterSubsystem;
         this.shooterRPM = shooterRPM;
+        addRequirements(shooterSubsystem);
     }
 
     @Override
