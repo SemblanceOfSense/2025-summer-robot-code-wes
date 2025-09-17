@@ -1,27 +1,27 @@
 {
+  "location": {
+    "front": -15,
+    "left": -15
+  },
+  "absoluteEncoderOffset": 0,
   "drive": {
-    "type": "sparkflex",
-    "id": 22,
+    "type": "krakenx60",
+    "id": 7,
     "canbus": null
   },
   "angle": {
-    "type": "talonsrx",
-    "id": 21,
+    "type": "krakenx60",
+    "id": 8,
     "canbus": null
   },
   "encoder": {
     "type": "talonsrx_pwm",
-    "id": 0,
+    "id": 23,
     "canbus": null
   },
   "inverted": {
     "drive": false,
     "angle": false
   },
-  "absoluteEncoderInverted": true,
-  "absoluteEncoderOffset": 7.6941204,
-  "location": {
-    "front": -12,
-    "left": -12
-  }
+  "absoluteEncoderInverted": false
 }
